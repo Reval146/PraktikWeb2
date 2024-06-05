@@ -12,8 +12,8 @@ class PasienController extends Controller
      */
     public function index()
     {
-        $list_pasien =Pasien::all();
-        return view('pasien.index',compact('list_pasien'));
+        $list_pasien = Pasien::all();
+        return view('pasien.index', compact('list_pasien'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        //
+        return view('pasien.create');
     }
 
     /**
@@ -29,7 +29,26 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'nama' => 'required',
+            'tmp_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+            'alamat' => 'required',
+        ]);
+        Pasien::create([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'tmp_lahir' => $request->tmp_lahir,
+            'tgl_lahir' => $request->tgl_lahir,
+            'gender' => $request->gender,
+            'email' => $request->email,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->route('pasiens.index');
     }
 
     /**
@@ -37,7 +56,7 @@ class PasienController extends Controller
      */
     public function show(Pasien $pasien)
     {
-        //
+        return view('pasien.show', compact('pasien'));
     }
 
     /**
@@ -45,7 +64,7 @@ class PasienController extends Controller
      */
     public function edit(Pasien $pasien)
     {
-        //
+        return view('pasien.edit', compact('pasien'));
     }
 
     /**
@@ -53,7 +72,8 @@ class PasienController extends Controller
      */
     public function update(Request $request, Pasien $pasien)
     {
-        //
+        $pasien->update($request->all());
+        return redirect()->route('pasiens.index')->with('success', 'Pasien updated successfully');
     }
 
     /**
@@ -61,6 +81,7 @@ class PasienController extends Controller
      */
     public function destroy(Pasien $pasien)
     {
-        //
+        $pasien->delete();
+        return redirect()->route('pasiens.index')->with('success', 'Pasien deleted successfully');
     }
 }

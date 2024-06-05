@@ -16,7 +16,7 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">Alexander Pierce</a>
+                  <a href="#" class="d-block">Muhamad Reval Wijaya</a>
               </div>
           </div>
 

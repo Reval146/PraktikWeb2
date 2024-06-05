@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Pasien</h1>
+                        <h1>Unit Kerja</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -39,42 +39,19 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h1 class="my-4">Daftar Pasien</h1>
-                    <a href="{{ route('pasiens.create') }}" class="btn btn-primary">Tambah Pasien</a>
+                    <h1 class="my-4">Daftar Unit Kerja</h1>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tempat Lahir</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Gender</th>
-                                <th>Email</th>
-                                <th>Alamat</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($list_pasien as $pasien)
+                            @foreach ($list_unitkerja as $unitkerja)
                             <tr>
-                                <td>{{ $pasien->id }}</td>
-                                <td>{{ $pasien->kode }}</td>
-                                <td>{{ $pasien->nama }}</td>
-                                <td>{{ $pasien->tmp_lahir }}</td>
-                                <td>{{ $pasien->tgl_lahir }}</td>
-                                <td>{{ $pasien->gender }}</td>
-                                <td>{{ $pasien->email }}</td>
-                                <td>{{ $pasien->alamat }}</td>
-                                <td>
-                                    <a href="{{ route('pasiens.show', $pasien->id) }}" class="btn btn-info btn-sm">Read</a>
-                                    <a href="{{ route('pasiens.edit', $pasien->id) }}" class="btn btn-warning btn-sm">Update</a>
-                                    <form action="{{ route('pasiens.destroy', $pasien->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this pasien?')">Delete</button>
-                                    </form>
-                                </td>
+                                <td>{{ $unitkerja->id }}</td>
+                                <td>{{ $unitkerja->nama }}</td>
                             </tr>
                             @endforeach
                         </tbody>
